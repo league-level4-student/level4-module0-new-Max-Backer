@@ -1,5 +1,6 @@
 package _03_Intro_to_Enums;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -27,11 +28,34 @@ public class IntroToEnums {
 
 		// 3. Create an array of StatesOfMatter with all the values using .values().
 		// Hint: Use "StatesOfMatter." as if it were a static method.
+		ArrayList<StatesOfMatter> elements = new ArrayList<>();
+		for(StatesOfMatter s: StatesOfMatter.values()) {
+			elements.add(s);
+		}
+		
 
 		// 4. Ask the user for a state of matter.
+		
+		String entry = JOptionPane.showInputDialog("Enter a state of matter");
 
 		// 5. Iterate through the array and find what the user entered.
 		// Hint: .name() or .toString
+		
+		int ordinal = 0;
+		boolean present = false;
+		
+		for(int i = 0; i < elements.size(); i++) {
+			if(elements.get(i).equals(entry)) {
+				ordinal = elements.get(i).ordinal();
+				present = true;
+			}
+		}
+		
+		if(present) System.out.println("Element: " + entry + "Ordinal: " + ordinal);
+		else System.out.println("No such element in list");
+		
+		
+		
 
 		// 6. Print outs its ordinal(order in the enum list)
 		// Hint: .ordinal()
@@ -58,8 +82,25 @@ public class IntroToEnums {
 		// Hint: Return the conversion: F = (C * 9/5) + 32
 
 		// 10. Create a variable of the StatesOfMatter type and initialize it randomly.
+		Random rand = new Random(); 
+		
+		StatesOfMatter randElement = elements.get(rand.nextInt(3));
 
 		// 11. Print outs both of its temperatures.
+		System.out.println("Temp in Farenheit: " + randElement.celsiusTemp + "Temp in Celsius: " + randElement.convertToFarenheit(randElement.celsiusTemp));
+		
+		switch(randElement) {
+		
+		case GAS:
+			System.out.println("Pasta");
+		
+		case LIQUID:
+			System.out.println("Soup");
+			
+		case SOLID:
+			System.out.println("Pizza");
+			
+		}
 		
 		// 11. Create a switch statement that switches on the variable you created.
 		// Note: When creating the cases, you can omit the "StatesOfMatter."
